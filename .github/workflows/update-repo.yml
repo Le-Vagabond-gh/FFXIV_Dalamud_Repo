@@ -24,19 +24,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Regenerate repo.json
+      - name: Regenerate, commit and push repo.json
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: scripts/update-repo.sh
-
-      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add repo.json
-          if git diff --cached --quiet; then
-            echo "repo.json unchanged"
-            exit 0
-          fi
-          git commit -m "Update repo.json (${{ github.event.client_payload.repository || github.event_name }})"
-          git push
+          # a run that checked out before a sibling run pushed gets rejected;
+          # regenerating on top of the fresh main is cheaper than merging
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset -q --hard origin/main
+            scripts/update-repo.sh
+            git add repo.json
+            if git diff --cached --quiet; then
+              echo "repo.json unchanged"
+              exit 0
+            fi
+            git commit -m "Update repo.json (${{ github.event.client_payload.repository || github.event_name }})"
+            git push && exit 0
+            echo "push rejected, retrying ($attempt/3)"
+          done
+          exit 1
