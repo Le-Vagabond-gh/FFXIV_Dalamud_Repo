@@ -1,0 +1,4 @@
+Le-Vagabond-gh/FFXIV_YABOT
+Le-Vagabond-gh/ffxiv_aetherradar
+Le-Vagabond-gh/ffxiv_dutychecklist
+Le-Vagabond-gh/ffxiv_loyalcompanion

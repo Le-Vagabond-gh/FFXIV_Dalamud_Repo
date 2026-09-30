@@ -1,0 +1,25 @@
+[
+  {
+    "Author": "Le Vagabond",
+    "Name": "YABOT",
+    "InternalName": "yabot",
+    "AssemblyVersion": "42.10.0.0",
+    "Description": "YABOT - Yet Another Bundle of Tweaks. A collection of small quality-of-life tweaks.",
+    "ApplicableVersion": "any",
+    "RepoUrl": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT",
+    "DalamudApiLevel": 15,
+    "LoadRequiredState": 0,
+    "LoadSync": false,
+    "CanUnloadAsync": false,
+    "LoadPriority": 0,
+    "Punchline": "Separately we are tweaks, but together we form a mighty YABOT!",
+    "AcceptsFeedback": true,
+    "DownloadLinkInstall": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT/releases/download/v20260930154825-f660858/yabot-v20260930154825-f660858-full.zip",
+    "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT/releases/download/v20260930154825-f660858/yabot-v20260930154825-f660858-full.zip",
+    "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT/releases/download/v20260930154825-f660858/yabot-v20260930154825-f660858-full.zip",
+    "LastUpdate": 1790783308,
+    "DownloadCount": 0,
+    "IsHide": false,
+    "IsTestingExclusive": false
+  }
+]

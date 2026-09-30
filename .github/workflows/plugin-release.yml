@@ -1,0 +1,139 @@
+# Reusable build + release workflow shared by every plugin listed in plugins.txt.
+# Callers pass their project folder name (which is also the InternalName) and
+# `secrets: inherit` so the GitHub App credentials reach the dispatch step.
+name: Plugin Release
+
+on:
+  workflow_call:
+    inputs:
+      project:
+        description: 'Project folder / InternalName (e.g. yabot)'
+        required: true
+        type: string
+    secrets:
+      DALAMUD_REPO_APP_ID:
+        required: true
+      DALAMUD_REPO_APP_PRIVATE_KEY:
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT: ${{ inputs.project }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Download Dalamud
+        run: |
+          curl -L https://goatcorp.github.io/dalamud-distrib/stg/latest.zip -o dalamud.zip
+          unzip dalamud.zip -d dalamud
+          rm dalamud.zip
+
+      - name: Build
+        env:
+          DALAMUD_HOME: ${{ github.workspace }}/dalamud
+        run: dotnet build -c Release --property:WarningLevel=0
+        working-directory: ${{ env.PROJECT }}
+
+      - name: Determine tag
+        id: tag
+        run: |
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            TAG="${{ github.ref_name }}"
+          else
+            TAG="v$(date +'%Y%m%d%H%M%S')-${GITHUB_SHA::7}"
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Package full plugin zip
+        id: package
+        run: |
+          # Dalamud.NET.Sdk already emits a complete plugin package (dll, manifest,
+          # deps.json and project references) - reuse it rather than assembling the
+          # file list by hand, so a new dependency can't be forgotten.
+          SDK_ZIP=$(find "$PROJECT/bin/Release" -name latest.zip -print -quit)
+          if [ -z "$SDK_ZIP" ]; then
+            echo "::error::Dalamud SDK plugin zip not found under $PROJECT/bin/Release"
+            exit 1
+          fi
+          ZIP="$PROJECT-${{ steps.tag.outputs.tag }}-full.zip"
+          cp "$SDK_ZIP" "$ZIP"
+          unzip -l "$ZIP"
+          echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PROJECT }}
+          path: |
+            ${{ steps.package.outputs.zip }}
+            ${{ env.PROJECT }}/bin/Release/${{ env.PROJECT }}.dll
+            ${{ env.PROJECT }}/bin/Release/${{ env.PROJECT }}.json
+
+      - name: Create Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.tag.outputs.tag }}
+          ZIP: ${{ steps.package.outputs.zip }}
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+
+          if [ -n "$PREV_TAG" ]; then
+            COMMITS=$(git log --pretty=format:"- %s" "$PREV_TAG"..HEAD)
+            CHANGELOG_LINK="**Full Changelog**: https://github.com/${{ github.repository }}/compare/$PREV_TAG...$TAG"
+            NOTES="$COMMITS"$'\n\n'"$CHANGELOG_LINK"
+          else
+            NOTES=$(git log --pretty=format:"- %s" 2>/dev/null || echo "Initial release")
+          fi
+
+          {
+            echo "$NOTES"
+            echo
+            echo "## Installing"
+            echo
+            echo "Easiest: add \`https://raw.githubusercontent.com/Le-Vagabond-gh/FFXIV_Dalamud_Repo/main/repo.json\` as a custom plugin repository in Dalamud and install from the plugin installer."
+            echo
+            echo "Manual first install: download **$ZIP** and extract it - it holds the plugin plus the dependencies it needs to load. Point the Dalamud dev plugin location at the extracted \`$PROJECT.dll\`."
+            echo
+            echo "Manual update: \`$PROJECT.dll\` and \`$PROJECT.json\` on their own are enough."
+          } > release-notes.md
+
+          gh release create "$TAG" \
+            "$ZIP" \
+            "$PROJECT/bin/Release/$PROJECT.dll" \
+            "$PROJECT/bin/Release/$PROJECT.json" \
+            --notes-file release-notes.md \
+            --title "Release $TAG"
+
+      # GITHUB_TOKEN cannot trigger workflows in another repo, so mint a short-lived
+      # GitHub App token scoped to FFXIV_Dalamud_Repo for the dispatch.
+      - name: Get app token
+        id: app
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.DALAMUD_REPO_APP_ID }}
+          private-key: ${{ secrets.DALAMUD_REPO_APP_PRIVATE_KEY }}
+          owner: Le-Vagabond-gh
+          repositories: FFXIV_Dalamud_Repo
+
+      - name: Notify plugin repository
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: |
+          gh api repos/Le-Vagabond-gh/FFXIV_Dalamud_Repo/dispatches \
+            -f event_type=plugin-released \
+            -f 'client_payload[repository]=${{ github.repository }}'
