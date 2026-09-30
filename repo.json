@@ -98,5 +98,31 @@
     "DownloadCount": 0,
     "IsHide": false,
     "IsTestingExclusive": false
+  },
+  {
+    "Author": "Le Vagabond",
+    "Name": "Eloi",
+    "InternalName": "Eloi",
+    "AssemblyVersion": "1.13.0.0",
+    "Description": "Automates market board penny pinching. Fork of Dagobert by SHOEGAZEssb with extra options; imports your existing Dagobert settings on first run.",
+    "ApplicableVersion": "any",
+    "RepoUrl": "https://github.com/Le-Vagabond-gh/ffxiv_eloi",
+    "Tags": [
+      "Utility"
+    ],
+    "DalamudApiLevel": 15,
+    "LoadRequiredState": 0,
+    "LoadSync": false,
+    "CanUnloadAsync": false,
+    "LoadPriority": 0,
+    "Punchline": "Tells the king his prices are on backwards",
+    "AcceptsFeedback": true,
+    "DownloadLinkInstall": "https://github.com/Le-Vagabond-gh/ffxiv_eloi/releases/download/v20260930163457-17eef28/Eloi-v20260930163457-17eef28-full.zip",
+    "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/ffxiv_eloi/releases/download/v20260930163457-17eef28/Eloi-v20260930163457-17eef28-full.zip",
+    "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/ffxiv_eloi/releases/download/v20260930163457-17eef28/Eloi-v20260930163457-17eef28-full.zip",
+    "LastUpdate": 1790786101,
+    "DownloadCount": 0,
+    "IsHide": false,
+    "IsTestingExclusive": false
   }
 ]
