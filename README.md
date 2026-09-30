@@ -25,3 +25,4 @@ Updates are picked up automatically by Dalamud like for any other repository.
 | Aether Radar | https://github.com/Le-Vagabond-gh/ffxiv_aetherradar |
 | Duty Checklist | https://github.com/Le-Vagabond-gh/ffxiv_dutychecklist |
 | Loyal Companion | https://github.com/Le-Vagabond-gh/ffxiv_loyalcompanion |
+| Eloi (market board undercutting, fork of Dagobert) | https://github.com/Le-Vagabond-gh/ffxiv_eloi |
