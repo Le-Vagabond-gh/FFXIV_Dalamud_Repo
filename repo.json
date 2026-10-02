@@ -3,7 +3,7 @@
     "Author": "Le Vagabond",
     "Name": "YABOT",
     "InternalName": "yabot",
-    "AssemblyVersion": "42.10.0.0",
+    "AssemblyVersion": "42.10.1.0",
     "Description": "YABOT - Yet Another Bundle of Tweaks. A collection of small quality-of-life tweaks.",
     "ApplicableVersion": "any",
     "RepoUrl": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT",
@@ -14,10 +14,10 @@
     "LoadPriority": 0,
     "Punchline": "Separately we are tweaks, but together we form a mighty YABOT!",
     "AcceptsFeedback": true,
-    "DownloadLinkInstall": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT/releases/download/v20260930161350-c76cb4e/yabot-v20260930161350-c76cb4e-full.zip",
-    "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT/releases/download/v20260930161350-c76cb4e/yabot-v20260930161350-c76cb4e-full.zip",
-    "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT/releases/download/v20260930161350-c76cb4e/yabot-v20260930161350-c76cb4e-full.zip",
-    "LastUpdate": 1790784834,
+    "DownloadLinkInstall": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT/releases/download/v20261002122212-3fe3520/yabot-v20261002122212-3fe3520-full.zip",
+    "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT/releases/download/v20261002122212-3fe3520/yabot-v20261002122212-3fe3520-full.zip",
+    "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT/releases/download/v20261002122212-3fe3520/yabot-v20261002122212-3fe3520-full.zip",
+    "LastUpdate": 1790943735,
     "DownloadCount": 0,
     "IsHide": false,
     "IsTestingExclusive": false
@@ -41,7 +41,7 @@
     "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/ffxiv_aetherradar/releases/download/v20260930161347-9dad7e1/aetherradar-v20260930161347-9dad7e1-full.zip",
     "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/ffxiv_aetherradar/releases/download/v20260930161347-9dad7e1/aetherradar-v20260930161347-9dad7e1-full.zip",
     "LastUpdate": 1790784830,
-    "DownloadCount": 0,
+    "DownloadCount": 8,
     "IsHide": false,
     "IsTestingExclusive": false
   },
@@ -64,7 +64,7 @@
     "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/ffxiv_dutychecklist/releases/download/v20260930161347-df31429/dutychecklist-v20260930161347-df31429-full.zip",
     "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/ffxiv_dutychecklist/releases/download/v20260930161347-df31429/dutychecklist-v20260930161347-df31429-full.zip",
     "LastUpdate": 1790784834,
-    "DownloadCount": 0,
+    "DownloadCount": 5,
     "IsHide": false,
     "IsTestingExclusive": false
   },
@@ -95,7 +95,7 @@
     "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/ffxiv_loyalcompanion/releases/download/v20260930161352-fa91761/LoyalCompanion-v20260930161352-fa91761-full.zip",
     "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/ffxiv_loyalcompanion/releases/download/v20260930161352-fa91761/LoyalCompanion-v20260930161352-fa91761-full.zip",
     "LastUpdate": 1790784835,
-    "DownloadCount": 0,
+    "DownloadCount": 5,
     "IsHide": false,
     "IsTestingExclusive": false
   },
@@ -121,7 +121,7 @@
     "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/ffxiv_eloi/releases/download/v20260930163457-17eef28/Eloi-v20260930163457-17eef28-full.zip",
     "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/ffxiv_eloi/releases/download/v20260930163457-17eef28/Eloi-v20260930163457-17eef28-full.zip",
     "LastUpdate": 1790786101,
-    "DownloadCount": 0,
+    "DownloadCount": 8,
     "IsHide": false,
     "IsTestingExclusive": false
   }
