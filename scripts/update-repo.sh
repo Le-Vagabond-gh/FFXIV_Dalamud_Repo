@@ -16,11 +16,15 @@ while read -r repo; do
     exit 1
   fi
   manifest=$(curl -fsSL "$manifest_url")
+  # Lifetime count: sum the -full.zip downloads over every release, not just the latest one
+  # (which would reset to 0 on each new release).
+  downloads=$(gh api --paginate "repos/$repo/releases" \
+    --jq '[.[].assets[] | select(.name | endswith("-full.zip")) | .download_count] | add // 0' | jq -s add)
   entries+=("$(jq \
     --arg zip "$zip_url" \
     --arg repo_url "https://github.com/$repo" \
     --argjson last_update "$(date -d "$(jq -r .published_at <<<"$release")" +%s)" \
-    --argjson downloads "$(jq '[.assets[] | select(.name | endswith("-full.zip")) | .download_count] | add' <<<"$release")" \
+    --argjson downloads "$downloads" \
     '. + {
       RepoUrl: (.RepoUrl // $repo_url),
       DownloadLinkInstall: $zip, DownloadLinkUpdate: $zip, DownloadLinkTesting: $zip,
