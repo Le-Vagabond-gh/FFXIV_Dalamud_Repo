@@ -20,15 +20,19 @@ while read -r repo; do
   # (which would reset to 0 on each new release).
   downloads=$(gh api --paginate "repos/$repo/releases" \
     --jq '[.[].assets[] | select(.name | endswith("-full.zip")) | .download_count] | add // 0' | jq -s add)
+  # The release body is the commit list followed by the compare link and install
+  # instructions; only the commit list is useful in the Dalamud installer.
+  changelog=$(jq -r '.body // ""' <<<"$release" | sed '/^\*\*Full Changelog\*\*/,$d; /^## Installing/,$d' | sed -e :a -e '/^\n*$/{$d;N;ba' -e '}')
   entries+=("$(jq \
     --arg zip "$zip_url" \
+    --arg changelog "$changelog" \
     --arg repo_url "https://github.com/$repo" \
     --argjson last_update "$(date -d "$(jq -r .published_at <<<"$release")" +%s)" \
     --argjson downloads "$downloads" \
     '. + {
       RepoUrl: (.RepoUrl // $repo_url),
       DownloadLinkInstall: $zip, DownloadLinkUpdate: $zip, DownloadLinkTesting: $zip,
-      LastUpdate: $last_update, DownloadCount: $downloads,
+      LastUpdate: $last_update, DownloadCount: $downloads, Changelog: $changelog,
       IsHide: false, IsTestingExclusive: false
     }' <<<"$manifest")")
 done < plugins.txt
