@@ -18,7 +18,7 @@
     "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT/releases/download/v20261110170357-fed8643/yabot-v20261110170357-fed8643-full.zip",
     "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/FFXIV_YABOT/releases/download/v20261110170357-fed8643/yabot-v20261110170357-fed8643-full.zip",
     "LastUpdate": 1794330241,
-    "DownloadCount": 153,
+    "DownloadCount": 158,
     "Changelog": "- feat: zone titles wears a Makai title in PvP zones",
     "IsHide": false,
     "IsTestingExclusive": false
@@ -42,7 +42,7 @@
     "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/ffxiv_aetherradar/releases/download/v20260930161347-9dad7e1/aetherradar-v20260930161347-9dad7e1-full.zip",
     "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/ffxiv_aetherradar/releases/download/v20260930161347-9dad7e1/aetherradar-v20260930161347-9dad7e1-full.zip",
     "LastUpdate": 1790784830,
-    "DownloadCount": 348,
+    "DownloadCount": 374,
     "Changelog": "- Use shared plugin-release workflow from FFXIV_Dalamud_Repo",
     "IsHide": false,
     "IsTestingExclusive": false
@@ -98,7 +98,7 @@
     "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/ffxiv_loyalcompanion/releases/download/v20261111101111-22d4754/LoyalCompanion-v20261111101111-22d4754-full.zip",
     "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/ffxiv_loyalcompanion/releases/download/v20261111101111-22d4754/LoyalCompanion-v20261111101111-22d4754-full.zip",
     "LastUpdate": 1794391876,
-    "DownloadCount": 10,
+    "DownloadCount": 14,
     "Changelog": "- fix: second paw drawn over the first gearset row\n- README: install via the FFXIV_Dalamud_Repo custom repository",
     "IsHide": false,
     "IsTestingExclusive": false
@@ -107,7 +107,7 @@
     "Author": "Le Vagabond",
     "Name": "Eloi",
     "InternalName": "Eloi",
-    "AssemblyVersion": "1.13.0.0",
+    "AssemblyVersion": "1.14.0.0",
     "Description": "Automates market board penny pinching. Fork of Dagobert by SHOEGAZEssb with extra options; imports your existing Dagobert settings on first run.",
     "ApplicableVersion": "any",
     "RepoUrl": "https://github.com/Le-Vagabond-gh/ffxiv_eloi",
@@ -121,12 +121,12 @@
     "LoadPriority": 0,
     "Punchline": "Tells the king his prices are on backwards",
     "AcceptsFeedback": true,
-    "DownloadLinkInstall": "https://github.com/Le-Vagabond-gh/ffxiv_eloi/releases/download/v20260930163457-17eef28/Eloi-v20260930163457-17eef28-full.zip",
-    "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/ffxiv_eloi/releases/download/v20260930163457-17eef28/Eloi-v20260930163457-17eef28-full.zip",
-    "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/ffxiv_eloi/releases/download/v20260930163457-17eef28/Eloi-v20260930163457-17eef28-full.zip",
-    "LastUpdate": 1790786101,
+    "DownloadLinkInstall": "https://github.com/Le-Vagabond-gh/ffxiv_eloi/releases/download/v20261113084905-adb575e/Eloi-v20261113084905-adb575e-full.zip",
+    "DownloadLinkUpdate": "https://github.com/Le-Vagabond-gh/ffxiv_eloi/releases/download/v20261113084905-adb575e/Eloi-v20261113084905-adb575e-full.zip",
+    "DownloadLinkTesting": "https://github.com/Le-Vagabond-gh/ffxiv_eloi/releases/download/v20261113084905-adb575e/Eloi-v20261113084905-adb575e-full.zip",
+    "LastUpdate": 1794559748,
     "DownloadCount": 15,
-    "Changelog": "- Rename fork to Eloi and import Dagobert settings on first run\n- Fix stuck \"Cancel\" button on the retainer overlay\n- Add Ask pinch mode and stack split prompt for post pinch\n- Shorten skipped-item messages and include both prices\n- Color-code price change messages (red for cut, green for increase)\n- Update to Dalamud API 15\n- Skip max pinch up cap for post-pinch (item drop)\n- Add max pinch up percentage option",
+    "Changelog": "- Add Universalis price source, pinch log window and marketplace-only rules\n- Update ECommons to build against the current Dalamud",
     "IsHide": false,
     "IsTestingExclusive": false
   }
